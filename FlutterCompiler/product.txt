@@ -1,0 +1,81 @@
+void main( ) {
+  runApp( MyApp1());
+}
+
+
+class MyApp2 extends StatelessWidget{
+int x = 1;
+int y;
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("compiler test")
+        ),
+
+        body: ListView(
+          children: [
+             InkWell(
+               onTap: () {
+                 Navigator.push(context, MaterialPageRoute(
+                     builder: (BuildContext context) =>
+                        product("first product", "images/0001.jpg",
+                             "first description")
+                     )
+                 );
+               },
+               child: Column(
+                children: [
+                  Text("first product" ,style: TextStyle(fontSize: 155 , color: Colors.deepOrangeAccent)),
+                  Image(
+                      image: AssetImage("images/0001.jpg") ,height: 100,width: 100
+                  ),
+                  Text("first description",style: TextStyle(fontSize: 155 , color: Colors.deepOrangeAccent))
+                ]
+            )
+             ),
+            InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          product("second product", "images/0002.jpg",
+                              "second description")
+                  )
+                  );
+                },
+                child: Column(
+                    children: [
+                      Text("second product" ,style: TextStyle(fontSize: 155 , color: Colors.deepOrangeAccent)),
+                      Image(
+                          image: AssetImage("images/0002.jpg") ,height: 100,width: 100
+                      ),
+                      Text("second description",style: TextStyle(fontSize: 155 , color: Colors.deepOrangeAccent))
+                    ]
+                )
+            ),
+            InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          product("third product", "images/0006.jpg",
+                              "third description")
+                  )
+                  );
+                },
+                child: Column(
+                    children: [
+                      Text("third product" ,style: TextStyle(fontSize: 155 , color: Colors.deepOrangeAccent)),
+                      Image(
+                          image: AssetImage("images/0006.jpg") ,height: 100,width: 100
+                      ),
+                      Text("third description",style: TextStyle(fontSize: 155 , color: Colors.deepOrangeAccent))
+                    ]
+                )
+            )
+          ]
+        )
+      )
+    );
+  }
+}

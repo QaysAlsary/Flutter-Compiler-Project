@@ -1,0 +1,102 @@
+
+
+class ListOfProducts extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(
+                title: Text("compiler test")
+            ),
+
+            body: ListView(
+                children: [
+                  InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                product("first product",
+                                    "images/0001.jpg",
+                                    "first description")
+                          )
+                        );
+                      },
+                      child: Column(
+                          children: [
+                            Text("first product" ,style: TextStyle(fontSize: 30 , color: Colors.red)),
+                            Image(
+                                image: AssetImage("images/0001.jpg") ,height: 500,width: 400
+                            )
+                          ]
+                      )
+                  ),
+                  InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                product("second product",
+                                    "images/0002.jpg",
+                                    "second description")
+                        )
+                        );
+                      },
+                      child: Column(
+                          children: [
+                            Text("second product" ,style: TextStyle(fontSize: 30 , color: Colors.red)),
+                            Image(
+                                image: AssetImage("images/0002.jpg"),height: 100,width: 100
+                            )
+                          ]
+                      )
+                  ),
+                  Column(
+                      children:[
+                        Text("Hi",style:TextStyle(fontSize:40,color:Colors.green)),
+                        Image(
+                            image:AssetImage("images/0006.jpg"),width:200
+                        )
+                      ]
+                  ),
+
+                  Row(
+                      children:[
+                        Text("Hi",style:TextStyle(fontSize:40,color:Colors.green)),
+                        Image(
+                            image:AssetImage("images/0007.jpg"),width:200
+                        )
+                      ]
+                  )
+                ]
+            )
+        )
+    );
+  }
+}
+
+class product extends StatelessWidget{
+  string n=" ";
+  string p="";
+  string description=" ";
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+              appBar: AppBar(
+                  title: Text("Compiler Test")
+              ),
+              body:
+              Column(
+                  children: [
+                    Text(n),
+                    Image(
+                        image: AssetImage(p)
+                    ),
+                    Text(description)
+                  ]
+              )
+
+      )
+    );
+  }
+}
+

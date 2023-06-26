@@ -1,0 +1,108 @@
+package app;
+
+import Classes.*;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
+public class Generator {
+    String FileName = "";
+    String Nav = "";
+    String Content = "";
+    String Contents = "";
+    public Generator(String title){
+        this.FileName = title;
+    }
+
+    public String navCode(){
+        return this.Nav = "    <head>\n" +
+                "        <title>" + FileName + " details</title>\n" +
+                "    </head>\n" +
+                "    <body>\n";
+    }
+
+    public String contentCode(Column column){
+        String content = "";
+        content += "     <div>\n" ;
+        for(Widget e :  column.children){
+            if(e instanceof Text){
+                content += "        <p style=\"font-size: " + ((Text) e).fontSize +"px;color: " + ((Text) e).color +"\">" + ((Text) e).text + "</p>\n" ;
+            }else if(e instanceof Image){
+                content += "        <img src=\""+ ((Image) e).path + "\" width=\"" + ((((Image) e).width != 0) ? ((Image) e).width + "px" : "100%") + "\"" +
+                           " height=\""+ ((((Image) e).height != 0) ? ((Image) e).height + "px" : "100%")+ "\"" +">\n" ;
+            }
+        }
+        content += "        <a href=\"index.php\">back to list</a>\n    </div>\n";
+        return content;
+    }
+    public String contentsCode(ListView listView){
+        for(Widget w : listView.children){
+            if(w instanceof Column){
+                this.Contents += "     <div>\n" ;
+                    for(Widget e : ((Column) w).children){
+                        if(e instanceof Text){
+                            this.Contents += "        <p style=\"font-size: " + ((Text) e).fontSize +"px;color: " + ((Text) e).color +"\">" + ((Text) e).text + "</p>\n" ;
+                        }else if(e instanceof Image){
+                            this.Contents += "        <img src=\""+ ((Image) e).path + "\" width=\"" + ((((Image) e).width != 0) ? ((Image) e).width + "px" : "100%") + "\"" +
+                                    " height=\""+ ((((Image) e).height != 0) ? ((Image) e).height + "px" : "100%") + "\"" +">\n"  ;
+                        }
+                    }
+                    this.Contents += "    </div>\n";
+            }else if(w instanceof InkWell){
+                this.Contents += divCode((Column) ((InkWell) w).widget) +
+                        "        <a href=\"" + ((InkWell) w).navigator.distClass + "?title=" +
+                        ((InkWell) w).navigator.title + "&image=" + ((InkWell) w).navigator.image +
+                        "&description=" + ((InkWell) w).navigator.description +"\">click here for more details</a>\n" +
+                        "    </div>\n";
+            }
+        }
+        return this.Contents;
+    }
+    public String divCode(Column column){
+        String contents = "";
+        contents += "     <div>\n" ;
+        for(Widget e :  column.children){
+            if(e instanceof Text){
+                contents += "        <p style=\"font-size: " + ((Text) e).fontSize +"px;color: " + ((Text) e).color +"\">" + ((Text) e).text + "</p>\n" ;
+            }else if(e instanceof Image){
+                contents += "        <img src=\""+ ((Image) e).path + "\" width=\"" + ((((Image) e).width != 0) ? ((Image) e).width + "px" : "100%") + "\"" +
+                        " height=\""+ ((((Image) e).height != 0) ? ((Image) e).height + "px" : "100%") + "\"" +">\n"  ;
+            }
+        }
+        contents += "    </div>\n";
+        return contents;
+    }
+
+    public void generateForColumn(Column column){
+        PrintWriter writer;
+        this.Nav = navCode();
+        this.Content = contentCode(column);
+        try{
+            writer = new PrintWriter(this.FileName + ".html");
+        }catch (FileNotFoundException e){
+            throw new RuntimeException(e);
+        }
+        writer.println("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                this.Nav + "\n\n" + this.Content +
+                "   </body>\n</html>"
+        );
+        writer.close();
+    }
+    public void generateForListView(ListView listView){
+        PrintWriter writer;
+        this.Nav = navCode();
+        this.Contents = contentsCode(listView);
+        try{
+            writer = new PrintWriter(this.FileName + ".html");
+        }catch (FileNotFoundException e){
+            throw new RuntimeException(e);
+        }
+        writer.println("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                this.Nav + "\n\n" + this.Contents +
+                "   </body>\n</html>"
+        );
+        writer.close();
+    }
+}

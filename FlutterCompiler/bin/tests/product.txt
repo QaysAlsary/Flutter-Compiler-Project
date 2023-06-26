@@ -1,0 +1,23 @@
+
+    class Color extends StatelessWidget{
+      @override
+      Widget build(BuildContext context) {
+        return MaterialApp(
+               home: Scaffold(
+                   appBar: AppBar(
+                       title: Text("Compiler Test")
+                       ),
+                       body:
+                           Column(
+                               children: [
+                                    Text("colors"),
+                                    Image(
+                                       image: AssetImage("imgs/img1.png"),width:500,height:400
+                                    ),
+                                    Text("this photo has many colors .")
+                               ]
+                           )
+               )
+        );
+      }
+    }

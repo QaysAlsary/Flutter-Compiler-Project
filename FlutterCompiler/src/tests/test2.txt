@@ -1,0 +1,40 @@
+class a{
+int main(){
+
+    /*
+    * 1
+    */
+    int x = 0;
+    if(x==0){
+        print(x);
+    }
+    string x = "hello world";
+     /*
+     * 2
+     */
+     print(y);
+
+     /*
+     * 3
+     */
+     string z;
+     return z;
+
+}
+}
+    /*class product{
+
+    int y = 2;
+        int main(){
+           int x=8 ;
+           string x = "hello";
+           return z;
+        }
+        //string y = " ";
+        int printing(){
+           // string y="hello";
+            return y;
+        }
+    }
+
+    */

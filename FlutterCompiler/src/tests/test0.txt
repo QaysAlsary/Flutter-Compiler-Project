@@ -1,0 +1,12 @@
+class dart{
+    int x;
+    int y;
+    int method( ){
+        if(z > 0){
+           x = 2 + 2;
+           print(y);
+        }
+        x=5;
+        return x;
+    }
+}
